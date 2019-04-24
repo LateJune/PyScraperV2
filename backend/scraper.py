@@ -29,7 +29,6 @@ def setUpConnection():
     
     # slices off the 1st arg which is the name of the file
     movie_title_list = sys.argv[1:]
-
     
     # get our title out of a list format and define the buffer to hyphenate it
     title_with_spaces = movie_title_list[0]

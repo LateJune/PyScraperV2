@@ -5,6 +5,8 @@ const cors = require('cors') // cross reference some shit
 const Data = require('./data.js'); //import our data schema for the database
 const app = express();
 const spawn = require("child_process").spawn;
+
+
 app.use(cors({credentials: true, origin: true}))
 app.use(bodyParser.urlencoded({ extended: true })); 
 
@@ -17,7 +19,7 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function(){
     console.log('Connected to Database')
-    // We are able to retrieve our data the like the old way using 
+    // We are able to retrieve our data using 
     // mongodb Client functions inside our mongoose function
     /*
     mongoose.connection.db.collection('movies', function(err, collection){
@@ -38,19 +40,13 @@ app.get('/getData', (req, res) => {
             return res.json({success: true, data: data})
     });
 });
-
-
-
-app.get('/index',(req, res) =>{
-    res.sendfile('index.html');
-});
   
-app.post('/',(req,res)=>{
+app.post('/getTitle',(req,res)=>{
+  //let movie_title = req.body.movieTitle
 
-  let movie_title = req.body.movie_title
+  let movie_title = req.query.title;
   
   // create a child process in the same directory and run python file
-
   // command line inputs will come after separated by commas
   let process = spawn('python',["scraper.py", movie_title]);
   
@@ -65,9 +61,6 @@ app.post('/',(req,res)=>{
     let dataOut = Buffer.from(data,'hex').toString('utf8');
     console.log(dataOut);
   })
-  
-  res.send("<h1>Running Python Script</h1>" + movie_title);
-  
 });
 
 app.listen(3001, () => console.log('Listening on port 3001')); //listen on port 3000

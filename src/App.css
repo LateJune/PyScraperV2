@@ -1,0 +1,18 @@
+.movies{
+    text-align: center;
+    border: 5px black solid;
+    font-size: 18px;
+    font-family: Ubuntu;
+    border-radius: 15px;
+    color: white;
+    background-color: #696969;
+    margin-bottom: 20px;
+}
+
+.container{
+    padding-top: 100px;
+}
+
+.nav {
+    float: right;
+}
