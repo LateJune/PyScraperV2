@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors') // cross reference some shit
+const cors = require('cors') // cross reference
 const Data = require('./data.js'); //import our data schema for the database
 const app = express();
 const spawn = require("child_process").spawn;
